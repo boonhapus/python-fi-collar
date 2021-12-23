@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "python-fi-collar"
+version = "0.1.0"
+description = "A python interface for Fi, the smartest dog collar ever built."
+authors = ["boonhapus <me@boonhap.us>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+httpx = "^0.21.1"
+
+[tool.poetry.dev-dependencies]
+ward = "^0.65.0-beta.0"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

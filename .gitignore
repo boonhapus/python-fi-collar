@@ -139,3 +139,6 @@ dmypy.json
 dist/pkgs/*.whl
 dist/pkgs/*.zip
 dist/pkgs/*.tar.gz
+
+# shhh!
+tests/secrets.py

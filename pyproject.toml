@@ -4,12 +4,16 @@ version = "0.1.0"
 description = "A python interface for Fi, the smartest dog collar ever built."
 authors = ["boonhapus <me@boonhap.us>"]
 license = "MIT"
+packages = [
+    { include = "fi" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 httpx = "^0.21.1"
 
 [tool.poetry.dev-dependencies]
+setuptools = "^60.0.5"
 ward = "^0.65.0-beta.0"
 
 [build-system]

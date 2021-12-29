@@ -14,6 +14,9 @@ class Fi(RateLimitedHTTPClient):
 
     """
     def __init__(self):
+        self._session_id = None
+        self._user_id = None
+
         super().__init__(
             tokens=2,
             seconds=1,
@@ -28,6 +31,8 @@ class Fi(RateLimitedHTTPClient):
         """
         r = await self.post('auth/login', data={'email': email, 'password': password})
         r.raise_for_status()
+        self._session_id = r.json()['sessionId']
+        self._user_id = r.json()['userId']
         return r
 
     async def query(self, q: str, **variables) -> httpx.Request:
@@ -42,9 +47,7 @@ class Fi(RateLimitedHTTPClient):
         **variables
           graphql variables to substitute
         """
-        for name, value in variables.items():
-            q = q.replace(f'${name}', f'{value}')
-
-        r = await self.post('/graphql', data={'query': q})
-        r.raise_for_status()
+        # for name, value in variables.items():
+        #     q = q.replace(f'${name}', f'{value}')
+        r = await self.post('/graphql', json={'query': q, 'variables': variables})
         return r
